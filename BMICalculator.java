@@ -2,7 +2,7 @@
  * Example of our first lesson
  *
  * @author (Nadav Chen)
- * @email (nadav2282@gmail.com
+ * @email (nadav2282@gmail.com)
  */
 import java.util.Scanner;
 

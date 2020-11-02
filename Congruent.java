@@ -12,53 +12,49 @@ public class Congruent
     public static void main (String[ ] args )
     {
         Scanner scan = new Scanner(System.in);
-        double triangular_x1, triangular_y1, triangular_x2, triangular_y2, triangular_x3, triangular_y3;
+        double X1, Y1, X2, Y2, X3, Y3;
         System.out.println("Please enter 3 coordinates of the first triangular:"); 
-        triangular_x1 = scan.nextDouble(); // Input x1 of his first triangular
-        triangular_y1 = scan.nextDouble(); // Input y1 of his first triangular
-        triangular_x2 = scan.nextDouble(); // Input x2 of his first triangular
-        triangular_y2 = scan.nextDouble(); // Input y2 of his first triangular
-        triangular_x3 = scan.nextDouble(); // Input x3 of his first triangular
-        triangular_y3 = scan.nextDouble(); // Input y3 of his first triangular
-        String triangular1 = ((triangular_x1+", "+ triangular_y1)+" "+
-                (triangular_x2+", "+ triangular_y2)+" "+(triangular_x3+", "+ triangular_y3));
+        X1 = scan.nextDouble(); // Input x1 of his first triangular
+        Y1 = scan.nextDouble(); // Input y1 of his first triangular
+        X2 = scan.nextDouble(); // Input x2 of his first triangular
+        Y2 = scan.nextDouble(); // Input y2 of his first triangular
+        X3 = scan.nextDouble(); // Input x3 of his first triangular
+        Y3 = scan.nextDouble(); // Input y3 of his first triangular
 
-        double triangularRib1 =  Math.sqrt(Math.pow(triangular_x1-triangular_x2, 2)+ 
-                Math.pow(triangular_y1-triangular_y2, 2)) / 2; 
+        double triangularRib1 =  Math.sqrt(Math.pow(X1-X2, 2) + Math.pow(Y1-Y2, 2)) / 2; 
         // will be the distance between the point 1 - 2
-        double triangularRib2 =  Math.sqrt(Math.pow(triangular_x2-triangular_x3, 2)+ 
-                Math.pow(triangular_y2-triangular_y3, 2)) / 2; 
+        double triangularRib2 =  Math.sqrt(Math.pow(X2-X3, 2)+ 
+                Math.pow(Y2-Y3, 2)) / 2; 
         // will be the distance between the point 2 -3
-        double triangularRib3 =  Math.sqrt(Math.pow(triangular_x1-triangular_x3, 2)+ 
-                Math.pow(triangular_y1-triangular_y3, 2)) / 2; 
+        double triangularRib3 =  Math.sqrt(Math.pow(X1-X3, 2) + Math.pow(Y1-Y3, 2)) / 2; 
         // will be the distance between the point 3 - 1 
 
         System.out.println("Please enter 3 coordinates of the second triangular:"); 
-        double triangular_x4 = scan.nextDouble(); // Input x1 of his second triangular
-        double triangular_y4 = scan.nextDouble(); // Input y1 of his second triangular
-        double triangular_x5 = scan.nextDouble(); // Input x2 of his second triangular
-        double triangular_y5 = scan.nextDouble(); // Input y2 of his second triangular
-        double triangular_x6 = scan.nextDouble(); // Input x3 of his second triangular
-        double triangular_y6 = scan.nextDouble(); // Input y3 of his second triangular
+        double X4 = scan.nextDouble(); // Input x1 of his second triangular
+        double Y4 = scan.nextDouble(); // Input y1 of his second triangular
+        double X5 = scan.nextDouble(); // Input x2 of his second triangular
+        double Y5 = scan.nextDouble(); // Input y2 of his second triangular
+        double X6 = scan.nextDouble(); // Input x3 of his second triangular
+        double Y6 = scan.nextDouble(); // Input y3 of his second triangular
 
-        double triangularRib4 =  Math.abs(Math.sqrt(Math.pow(triangular_x4-triangular_x5, 2)+ 
-                    Math.pow(triangular_y4-triangular_y5, 2)) / 2); 
+        double triangularRib4 =  Math.abs(Math.sqrt(Math.pow(X4-X5, 2)+ 
+                    Math.pow(Y4-Y5, 2)) / 2); 
         // will be the distance between the point 1 - 2
-        double triangularRib5 =  Math.abs(Math.sqrt(Math.pow(triangular_x5-triangular_x6, 2)+ 
-                    Math.pow(triangular_y5-triangular_y6, 2)) / 2); 
+        double triangularRib5 =  Math.abs(Math.sqrt(Math.pow(X5-X6, 2)+ 
+                    Math.pow(-Y6, 2)) / 2); 
         // will be the distance between the point 2 -3
-        double triangularRib6 =  Math.abs(Math.sqrt(Math.pow(triangular_x6-triangular_x4, 2)+ 
-                    Math.pow(triangular_y6-triangular_y4, 2)) / 2);  
+        double triangularRib6 =  Math.abs(Math.sqrt(Math.pow(X6-X4, 2)+ 
+                    Math.pow(Y6-Y4, 2)) / 2);  
 
-        System.out.println("The first triangle is ("+triangular_x1+", "+ triangular_y1+
-            ") ("+triangular_x2+", "+ triangular_y2+") ("+triangular_x3+", "+ triangular_y3+")");
+        System.out.println("The first triangle is ("+X1+", "+ Y1+
+            ") ("+X2+", "+ Y2+") ("+X3+", "+ Y3+")");
         // Prints user coordinates
         System.out.println("Its lengths are " + triangularRib1 +", "+
             triangularRib2 +", "+ triangularRib3 +". ");
         // Prints rib's lengths
 
-        System.out.println("The second triangle is ("+ triangular_x1+", "+ triangular_y1+
-            ") ("+triangular_x2+", "+triangular_y2+") ("+triangular_x3+", "+ triangular_y3+")");
+        System.out.println("The second triangle is ("+ X1+", "+ Y1+
+            ") ("+X2+", "+Y2+") ("+X3+", "+ Y3+")");
         // Prints user coordinates
         System.out.println("Its lengths are " + triangularRib4+", "+ triangularRib5 +", "+
             triangularRib6 +". ");

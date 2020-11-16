@@ -18,8 +18,8 @@ public class HeartRate
         System.out.print ("Enter your age: ");
         int age = scan.nextInt(); // User input his age
         
-        int highLimit = (int)((CONST - age) * (HIGH/100)); // Calculate the high limit of the HeartReate
-        int lowLimit = (int)((CONST - age) * (LOW/100)); // Calculate the low limit of the HeartReate
+        int highLimit = ((CONST - age) * HIGH/100); // Calculate the high limit of the HeartReate
+        int lowLimit = ((CONST - age) * LOW/100); // Calculate the low limit of the HeartReate
         
         System.out.println("Your estimated target heart rate zone is "+ lowLimit + "-" + highLimit + " beats per minute"); 
         //Prints the output(result) to the user

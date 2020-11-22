@@ -1,5 +1,7 @@
 /**
  * This is class Temperature.
+ * Designed to calculate conversions between units of degrees
+ * Celsius Calvin and Fahrenheit
  *
  * @author (Nadav Chen)
  * @email (nadav2282@gmail.com)

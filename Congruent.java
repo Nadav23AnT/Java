@@ -2,6 +2,8 @@
 /**
  * This is class Congruent.
  * Made to calculate whether two triangles are equal by specifying their coordinates
+ * The user inserts 3 points per triangle for a total of two triangles, 
+ * then calculate whether these triangles are congruent
  *
  * @author (Nadav Chen)
  * @email (nadav2282@gmail.com)

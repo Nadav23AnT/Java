@@ -18,16 +18,17 @@ public class Driver
         Pen penA = new Pen(scan.next(), scan.next(), scan.nextInt(), scan.nextDouble());
         System.out.println("Please Enter the other pen details: color , made in , price , weight");
         Pen penB = new Pen(scan.next(), scan.next(), scan.nextInt(), scan.nextDouble());
-        
+
         System.out.println(penA.toString()); // Prints all info Pen A()
         System.out.println(penB.toString()); // Prints all info Pen B()
-        
+
         // prints method getColor()
         System.out.println("Pen A color is: " + penA.getColor()); 
         // prints method getMade()
         System.out.println("Pen B made in: " + penB.getMade()); 
         // using method isSameMade()
-        System.out.println("penA made in the same place as penB? " + penA.isSameMade(penB));
+        System.out.println("penA made in the same place as penB? " +
+            penA.isSameMade(penB));
         // using method isSamePrice()
         System.out.println("penA price equal to penB? " + penA.isSamePrice(penB));
         // using method isBluePen()
@@ -35,7 +36,8 @@ public class Driver
         // using method setPrice()
         penA.setPrice(35);
         // using method getPrice()
-        System.out.println("What is penA price? " + penA.getPrice());
+        System.out.println("PenA setting price to 35... : PenA Price:" +
+            penA.getPrice());
         // using method getWeight()
         System.out.println("What is penB weight? " + penA.getWeight());
     } // end of mathod main

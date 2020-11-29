@@ -17,7 +17,7 @@ public class Temperature
         // Asking the user to input info he wants to calculate
         String input = scan.next();
         char measure = input.charAt(0); // Input - the measure C / F / K
-        double temperature = scan.nextInt(); // input - the value of the the measure
+        double temperature = scan.nextDouble(); // input - the value of the the measure
         final double NUM1 = 5/9.0, NUM2 = 9/5.0, NUM3 = 32.0;
         final double NUM4= 273.15; // Numbers to calculate the measuers 1-4
 

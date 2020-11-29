@@ -14,6 +14,7 @@ public class Congruent
     public static void main (String[ ] args )
     {
         Scanner scan = new Scanner(System.in);
+        final int NUM = 2;
         double x1, y1, x2, y2, x3, y3;
         System.out.println("Please enter 3 coordinates of the first triangular:"); 
         x1 = scan.nextDouble(); // Input x1 of his first triangular
@@ -38,11 +39,14 @@ public class Congruent
         double x6 = scan.nextDouble(); // Input x3 of his second triangular
         double y6 = scan.nextDouble(); // Input y3 of his second triangular
 
-        double rib4 =  Math.abs(Math.sqrt(Math.pow(x4-x5, 2)+ Math.pow(y4-y5, 2)) / 2); 
+        double rib4 =  Math.abs(Math.sqrt(Math.pow(x4-x5, NUM)+
+                    Math.pow(y4-y5, NUM)) / NUM); 
         // will be the distance between the point 1 - 2
-        double rib5 =  Math.abs(Math.sqrt(Math.pow(x5-x6, 2)+ Math.pow(y5-y6, 2)) / 2); 
+        double rib5 =  Math.abs(Math.sqrt(Math.pow(x5-x6, NUM)+
+                    Math.pow(y5-y6, NUM)) / NUM); 
         // will be the distance between the point 2 -3
-        double rib6 =  Math.abs(Math.sqrt(Math.pow(x6-x4, 2)+ Math.pow(y6-y4, 2)) / 2);  
+        double rib6 =  Math.abs(Math.sqrt(Math.pow(x6-x4, NUM)+
+                    Math.pow(y6-y4, NUM)) / NUM);  
 
         System.out.println("The first triangle is ("+x1+", "+ y1+
             ") ("+x2+", "+ y2+") ("+x3+", "+ y3+")");

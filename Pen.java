@@ -17,7 +17,6 @@ public class Pen
     private double _weight;
 
     public Pen(String color , String made , int price , double weight)  {
-        final int DEFAULT = 0;
         _color = color;
         _made = made;
         _price = price;
@@ -59,7 +58,8 @@ public class Pen
     public void setPrice(int x)     {
         /** The method updates the price of the pen to be equal to x
          * unless it is small or equal to 0 */
-        if(_price > 0);
+        final int DEFAULT = 0;
+        if(_price > DEFAULT);
         _price = x;
     } // end method setPrice()
 

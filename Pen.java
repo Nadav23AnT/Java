@@ -15,12 +15,18 @@ public class Pen
     private String _made;
     private int _price;
     private double _weight;
-
+    private final int _HIGH = 10;
+    private final int _DEFAULT = 0;
+    
     public Pen(String color , String made , int price , double weight)  {
         _color = color;
         _made = made;
         _price = price;
+        if (price <= _DEFAULT)
+            _price = _HIGH;
         _weight = weight;
+        if (weight <= _DEFAULT)
+            _weight = _HIGH;
     }
 
     public String getColor()    { 
@@ -58,9 +64,8 @@ public class Pen
     public void setPrice(int x)     {
         /** The method updates the price of the pen to be equal to x
          * unless it is small or equal to 0 */
-        final int DEFAULT = 0;
-        if(_price > DEFAULT);
-        _price = x;
+        if(_price > _DEFAULT);
+            _price = x;
     } // end method setPrice()
 
     public double getWeight()   {
@@ -70,9 +75,9 @@ public class Pen
 
     public String toString()    {
         /** The method returns as a single-line description string about the pen */
-        return (String.valueOf('"') +_color +" pen, made by "+ _made +
+        return (_color +" pen, made by "+ _made +
             " , weights " + _weight + " grams, price: " + _price +
-            " Shekels" + String.valueOf('"'));
+            " Shekels");
     } // end method toString()
 
 } // end of class Pen

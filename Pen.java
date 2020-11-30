@@ -22,9 +22,9 @@ public class Pen
         _color = color;
         _made = made;
         _price = price;
+        _weight = weight;
         if (price <= _DEFAULT)
             _price = _HIGH;
-        _weight = weight;
         if (weight <= _DEFAULT)
             _weight = _HIGH;
     }
@@ -42,7 +42,7 @@ public class Pen
     public boolean isSameMade(Pen other)    { 
         /** A method that returns true if the other pen manufacturer name
          * is the same as the current manufacturer's name */
-        return (_made.equals(other._made));
+        return _made.equals(other._made);
     } // end method isSameMade()
 
     public boolean isSamePrice(Pen other)   {

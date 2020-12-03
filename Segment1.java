@@ -1,86 +1,115 @@
 
 /**
- * This is class  Segment1.
+ * This is class Segment1.
+ * Uses the Point class and creates a Segment 
+ * between two points parallel to the X-axis
  *
- * @author (your name)
+ * @author (Nadav Chen)
  * @email (nadav2282@gmail.com)
  */
 public class Segment1
 {
-    private Point _poLeft;
-    private Point _poRight;
-    private double _DEFAULT = 0;
+    private final double _DEFAULT = 0;
+    private Point _poLeft; // Represents the left point of the section
+    private Point _poRight; // Represents the right point of the section
+    
 
     public Segment1(Point left, Point right)    {
-        _poLeft = new Point(left);
-        _poRight = new Point(right);
+        /** Gets two parameters that constitute a left point
+         * and a right point and creates a section parallel to X */
+        _poLeft = new Point(left); 
+        _poRight = new Point(right); 
         if (_poLeft.getY() != _poRight.getY()) 
+        // Checks whether the segment is parallel, if not changes the y value to be parallel
             _poRight.setY(_poLeft.getY());
     }
 
     public Segment1(double leftX , double leftY , double rightX , double rightY)    {
+        /** Gets four parameters that constitute a left point
+         * and a right point and creates a section parallel to X */
         _poLeft = new Point(leftX, leftY);
         _poRight = new Point(rightX, rightY);
         if (_poLeft.getY() != _poRight.getY()) 
+        // Checks whether the segment is parallel, if not changes the y value to be parallel
             _poRight.setY(_poLeft.getY());
     }
     
     public Segment1(Segment1 other)    {
+        /** A builder who copies the section to the point
+         * at which the method is applied */
         this(other._poLeft, other._poRight);
     }
     
     public Point getPoLeft()    {
+        /** Returns the left point of the section */
         return _poLeft;
     }
     
     public Point getPoRight()   {
+        /** Returns the right point of the section */
         return _poRight;
     }
     
-    public double getPoLength()     {
+    public double getLength()    {
+        /** Returns the length of the section */
         return _poRight.getX() - _poLeft.getX(); 
     }
     
     public String toString()    {
+        /** Returns the contents of the object as a string of characters */
         return _poLeft.toString() + "---" + _poRight.toString();
     }
     
     public boolean equals(Segment1 other)  {
+        /** A method that checks whether the sections are identical */
         return (_poLeft.equals(other._poLeft) && _poRight.equals(other._poRight));
     }
     
     public boolean isAbove(Segment1 other)  {
+        /** Checks whether the section on which the method
+         * was applied is above the section in the parameter */
         return (_poLeft.isAbove(other._poLeft) && _poRight.isAbove(other._poRight));
     }
     
     public boolean isUnder(Segment1 other)  {
+        /** Checks whether the section on which the method
+         * was applied is under the section in the parameter */
         return other.isAbove(this);
     }
     
     public boolean isLeft(Segment1 other)  {
+        /** Checks whether the section on which the method
+         * was applied is on the left side of the section in the parameter */
         return _poRight.getX() < other._poLeft.getX() ;
     }
     
     public boolean isRight(Segment1 other)  {
+        /** Checks whether the section on which the method
+         * was applied is on the right side of the section in the parameter */
         return _poLeft.getX() > other._poRight.getX();
     }
     
     public void moveHorizontal(double delta)    {
+        /** A method that moves the section relative to the X-axis (horizontal) */
         _poLeft.move(delta , _DEFAULT);
         _poRight.move(delta, _DEFAULT);
     }
     
     public void moveVertical(double delta)    {
+        /** A method that moves the section relative to the Y-axis (vertical) */
         _poLeft.move(_DEFAULT , delta);
         _poRight.move(_DEFAULT , delta);
     }
     
-    public void changeSide(double delta)    {
+    public void changeSize(double delta)    {
+        /** A method that increases the length of the section by the number in the parameter, 
+         * but ensures that it remains in the first quarter */
         if (_poRight.getX() + delta > _poLeft.getX())
             _poRight.setX(_poRight.getX() + delta);
     }
     
     public boolean pointOnSegment(Point p)    {
+        /** Checks whether point p in the parameter is on the segment */
         if (_poRight.getX() - p.getX() >= _DEFAULT)
             return p.getY() == _poLeft.getY() && (_poRight.getX() - p.getX()) >= _poLeft.getX();
         else
@@ -88,10 +117,17 @@ public class Segment1
     }
     
     public boolean isBigger(Segment1 other)  {
+        /**  */
         return _poRight.getX()-_poLeft.getX() > other._poRight.getX()-other._poLeft.getX();
     }
     
     public double overlap(Segment1 other)   {
+        /**  */
+        
+    }
+    
+    public double trapezePerimeter(Segment1 other)   {
+        /**  */
         
     }
 } // end of class Segment1

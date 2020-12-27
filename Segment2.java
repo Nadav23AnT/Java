@@ -1,8 +1,10 @@
 
 /**
  * This is class  Segment2.
+ * Uses the Point class and creates a Segment 
+ * between two points parallel to the X-axis, that previewed by center point
  *
- * @author (your name)
+ * @author (Nadav Chen)
  * @email (nadav2282@gmail.com)
  */
 public class Segment2
@@ -14,13 +16,13 @@ public class Segment2
     public Segment2(double leftX, double leftY, double rightX, double rightY)    {
         /** Constructs a new segment using 4 specified x y coordinates: 
          * Two coordinates for the left point and two coordinates for the right point. */
-        _poCenter = new Point(((rightX+leftX) / _NUM), rightY);
-        _length = rightX-leftX; 
+        _poCenter = new Point(((rightX+leftX) / _NUM), leftY);
+        _length = rightX-leftX;
     }
 
     public Segment2(Point left, Point right)    {
         /** Constructs a new segment using two Points */
-        _poCenter = new Point(((right.getX() + left.getX()) / _NUM) , right.getY());
+        _poCenter = new Point(((right.getX() + left.getX()) / _NUM) , left.getY());
         _length = right.getX() - left.getX();
     }
 
@@ -32,7 +34,7 @@ public class Segment2
 
     public Segment2(Segment2 other)    {
         /** Copy Constructor */
-        _poCenter = other._poCenter;
+        _poCenter = new Point(other._poCenter);
         _length = other._length;
     }
 
@@ -54,7 +56,7 @@ public class Segment2
 
     public Point getPoRight()     {
         /** Returns the right point of the segment */
-        return (new Point(_poCenter.getX() + (_length / _NUM), _poCenter.getY()));
+        return new Point((_poCenter.getX() + (_length / _NUM)), _poCenter.getY());
     }
 
     public boolean equals(Segment2 other)     {
@@ -64,7 +66,7 @@ public class Segment2
 
     public boolean isAbove(Segment2 other)    {
         /** Check if this segment is above a reference segment. */
-        return _poCenter.getY() > other._poCenter.getY();
+        return _poCenter.isAbove(other._poCenter);
     }
 
     public boolean isBigger(Segment2 other)    {
@@ -74,7 +76,7 @@ public class Segment2
 
     public boolean isLeft(Segment2 other)    {
         /** Check if this segment is left of a received segment */
-        return this.getPoRight().getX() < other.getPoLeft().getX();
+        return this.getPoRight().isLeft(other.getPoLeft());
     }
 
     public boolean isRight(Segment2 other)    {
@@ -89,13 +91,13 @@ public class Segment2
 
     public void moveHorizontal(double delta)    {
         /** Move the segment horizontally by delta */
-        if (_poCenter.getX() - (_length / _NUM) + delta >= 0)
+        if (this.getPoLeft().getX() + delta >= _DEFAULT)
             _poCenter.move(delta , _DEFAULT);
     }
 
     public void moveVertical(double delta)    {
         /** Move the segment vertically by delta. */
-        if (_poCenter.getY() + delta >= 0)
+        if (_poCenter.getY() + delta >= _DEFAULT)
             _poCenter.move(_DEFAULT , delta);
     }
 
@@ -104,8 +106,12 @@ public class Segment2
         if (!this.isLeft(other) && !this.isRight(other))
             if (this.getPoRight().isRight(other.getPoRight()))
                 return other.getPoRight().getX() - this.getPoLeft().getX();
-            else
+            else if(other.getPoRight().isRight(this.getPoRight()))
                 return this.getPoRight().getX() - other.getPoLeft().getX();
+            else if(this.getPoRight().getX() >= other.getPoRight().getX() && this.getPoLeft().getX() <= other.getPoLeft().getX())
+                return other.getLength();
+            else
+                return _DEFAULT;
         else
             return _DEFAULT;
     }

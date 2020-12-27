@@ -51,7 +51,7 @@ public class Segment1
 
     public double getLength()    {
         /** Returns the length of the segment */
-        return _poRight.getX() - _poLeft.getX(); 
+        return _poRight.distance(_poLeft); 
     }
 
     public String toString()    {
@@ -79,18 +79,18 @@ public class Segment1
     public boolean isLeft(Segment1 other)  {
         /** Checks whether the segment on which the method
          * was applied is on the left side of the section in the parameter */
-        return _poRight.getX() < other._poLeft.getX() ;
+        return _poRight.isLeft(other._poLeft);
     }
 
     public boolean isRight(Segment1 other)  {
         /** Checks whether the segment on which the method
          * was applied is on the right side of the section in the parameter */
-        return _poLeft.getX() > other._poRight.getX();
+        return other.isLeft(this);
     }
 
     public void moveHorizontal(double delta)    {
         /** A method that moves the segment relative to the X-axis (horizontal) */
-        if (_poLeft.getX() + delta >= 0 && _poRight.getX() + delta >= 0){
+        if (_poLeft.getX() + delta >= _DEFAULT && _poRight.getX() + delta >= _DEFAULT){
             _poLeft.move(delta , _DEFAULT);
             _poRight.move(delta, _DEFAULT);
         }
@@ -98,9 +98,9 @@ public class Segment1
 
     public void moveVertical(double delta)    {
         /** A method that moves the segment relative to the Y-axis (vertical) */
-        if (_poRight.getY() + delta >= 0){
+        if (_poRight.getY() + delta >= _DEFAULT){
             _poLeft.move(_DEFAULT , delta);
-            _poRight.move(_DEFAULT ,  + delta);
+            _poRight.move(_DEFAULT ,  delta);
         }
     }
 
@@ -118,7 +118,7 @@ public class Segment1
 
     public boolean isBigger(Segment1 other)  {
         /** Is the segments on which the method was applied larger than the section in the parameter */
-        return _poRight.getX()-_poLeft.getX() > other._poRight.getX()-other._poLeft.getX();
+        return this.getLength() > other.getLength();
     }
 
     public double overlap(Segment1 other)   {
@@ -126,10 +126,14 @@ public class Segment1
         if (!this.isLeft(other) && !this.isRight(other))
             if (_poRight.isRight(other._poRight))
                 return other._poRight.getX() - _poLeft.getX();
-            else
+            else if(other._poRight.isRight(_poRight))
                 return _poRight.getX() - other._poLeft.getX();
+            else if(_poRight.getX() >= other._poRight.getX() && _poLeft.getX() <= other._poLeft.getX())  
+                return other.getLength();
+            else
+                return _DEFAULT;
         else
-            return _DEFAULT;
+                return _DEFAULT;
     }
 
     public double trapezePerimeter(Segment1 other)   {

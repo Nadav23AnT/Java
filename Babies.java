@@ -3,7 +3,7 @@
  * This is class  Babies.
  * Tests the health of the babies in postpartum tests and checks if further tests are needed
  *
- * @author (your name)
+ * @author (Nadav Chen)
  * @email (nadav2282@gmail.com)
  */
 import java.util.Scanner;

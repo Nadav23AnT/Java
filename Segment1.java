@@ -41,12 +41,12 @@ public class Segment1
 
     public Point getPoLeft()    {
         /** Returns the left point of the segment */
-        return _poLeft;
+        return new Point(_poLeft);
     }
 
     public Point getPoRight()   {
         /** Returns the right point of the segment */
-        return _poRight;
+        return new Point(_poRight);
     }
 
     public double getLength()    {
@@ -113,7 +113,7 @@ public class Segment1
 
     public boolean pointOnSegment(Point p)    {
         /** Checks whether point p in the parameter is on the segment */
-        return p.getY() == _poLeft.getY() && (_poRight.getX() - p.getX()) >= _poLeft.getX();
+        return p.getY() == _poLeft.getY() && p.getX() >= _poLeft.getX() && _poRight.getX() >= p.getX();
     }
 
     public boolean isBigger(Segment1 other)  {
@@ -124,12 +124,14 @@ public class Segment1
     public double overlap(Segment1 other)   {
         /** Returns the length of the overlap between the segments */
         if (!this.isLeft(other) && !this.isRight(other))
-            if (_poRight.isRight(other._poRight))
+            if (_poRight.isRight(other._poRight) && _poLeft.getX() > other._poLeft.getX())
                 return other._poRight.getX() - _poLeft.getX();
-            else if(other._poRight.isRight(_poRight))
+            else if(other._poRight.isRight(_poRight) && other._poLeft.getX() > _poLeft.getX())
                 return _poRight.getX() - other._poLeft.getX();
             else if(_poRight.getX() >= other._poRight.getX() && _poLeft.getX() <= other._poLeft.getX())  
                 return other.getLength();
+            else if(_poRight.getX() <= other._poRight.getX() && _poLeft.getX() >= other._poLeft.getX())
+                return this.getLength();
             else
                 return _DEFAULT;
         else

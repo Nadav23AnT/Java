@@ -28,7 +28,7 @@ public class Segment2
 
     public Segment2(Point poCenter, double length)    {
         /** Constructs a new segment using a center point and the segment length. */
-        Point _poCenter = new Point(poCenter);
+        _poCenter = new Point(poCenter);
         _length = length;
     }  
 
@@ -41,7 +41,8 @@ public class Segment2
     public void changeSize(double delta)     {
         /** Change the segment size by moving the right point by delta */
         if (getPoRight().getX() + delta > getPoLeft().getX())
-            getPoRight().setX(getPoLeft().getX() + delta);
+            _poCenter = new Point ((_poCenter.getX() + (delta/_NUM)), _poCenter.getY());
+        _length = getPoRight().getX() - getPoLeft().getX() + delta;
     }
 
     public double getLength()     {
@@ -103,22 +104,25 @@ public class Segment2
 
     public double overlap(Segment2 other)    {
         /**  Returns the overlap size of this segment and a reference segment. */
-        if (!this.isLeft(other) && !this.isRight(other))
-            if (this.getPoRight().isRight(other.getPoRight()))
-                return other.getPoRight().getX() - this.getPoLeft().getX();
-            else if(other.getPoRight().isRight(this.getPoRight()))
-                return this.getPoRight().getX() - other.getPoLeft().getX();
+        if (!this.isLeft(other) && !this.isRight(other)){
+            if (this.getPoRight().getX() > other.getPoRight().getX() && this.getPoLeft().getX() > other.getPoLeft().getX())
+                return Math.abs(other.getPoRight().getX() - this.getPoLeft().getX());
+            else if(other.getPoRight().getX() > this.getPoRight().getX() && other.getPoLeft().getX() > this.getPoLeft().getX())
+                return Math.abs(this.getPoRight().getX() - other.getPoLeft().getX());
             else if(this.getPoRight().getX() >= other.getPoRight().getX() && this.getPoLeft().getX() <= other.getPoLeft().getX())
                 return other.getLength();
+            else if(this.getPoRight().getX() <= other.getPoRight().getX() && this.getPoLeft().getX() >= other.getPoLeft().getX())
+                return this.getLength();
             else
                 return _DEFAULT;
+        } 
         else
             return _DEFAULT;
     }
 
     public boolean pointOnSegment(Point p)    {
         /** Check if a point is located on the segment */
-        return _poCenter.getY() == p.getY() && getPoRight().getX() - p.getX() >= getPoLeft().getX(); 
+        return _poCenter.getY() == p.getY() && getPoRight().getX() >= p.getX() && p.getX() >= getPoLeft().getX(); 
     }
 
     public String toString()    {
